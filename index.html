@@ -1,494 +1,1535 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Para Vale ❤️</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    *{
-      box-sizing:border-box;
-    }
+<title>Para Vale ❤️</title>
 
-    body{
-      margin:0;
-      min-height:100vh;
-      overflow:hidden;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      font-family:Arial, Helvetica, sans-serif;
-      background:radial-gradient(circle at center, #ffbfd0 0%, #ff7ea5 45%, #f04d7f 100%);
-      position:relative;
-    }
+<style>
 
-    .floating-heart{
-      position:fixed;
-      bottom:-50px;
-      opacity:.18;
-      pointer-events:none;
-      animation:floatUp linear forwards;
-      z-index:1;
-    }
+*{
+    box-sizing:border-box;
+}
 
-    @keyframes floatUp{
-      from{
-        transform:translateY(0) rotate(0deg);
-        opacity:.18;
-      }
-      to{
-        transform:translateY(-120vh) rotate(360deg);
-        opacity:0;
-      }
-    }
+body{
+    margin:0;
+    min-height:100vh;
+    overflow:hidden;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:Arial, Helvetica, sans-serif;
 
-    .container{
-      position:relative;
-      z-index:10;
-      text-align:center;
-      padding:24px;
-      width:min(92vw, 900px);
-    }
+    background:
+        radial-gradient(
+            circle at center,
+            #ffc0d1 0%,
+            #ff80a6 45%,
+            #ef4b7d 100%
+        );
 
-    .intro{
-      display:block;
-    }
+    position:relative;
+}
 
-    .intro.hide{
-      display:none;
-    }
+/* -------------------------
+   CORAZONES DEL FONDO
+------------------------- */
 
-    .title-small{
-      color:white;
-      font-size:clamp(1.3rem, 4vw, 2.1rem);
-      font-weight:bold;
-      text-shadow:0 4px 15px rgba(0,0,0,.18);
-      margin-bottom:12px;
-    }
+.floating-heart{
 
-    .title-small-2{
-      color:#fff7fa;
-      font-size:clamp(1rem, 3vw, 1.3rem);
-      margin-bottom:28px;
-      opacity:.95;
-    }
+    position:fixed;
 
-    .heart-wrap{
-      position:relative;
-      width:280px;
-      height:280px;
-      margin:0 auto 10px auto;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-    }
+    bottom:-60px;
 
-    .heart-btn{
-      border:none;
-      background:none;
-      cursor:pointer;
-      font-size:160px;
-      line-height:1;
-      animation:beat 1s infinite;
-      filter:drop-shadow(0 18px 25px rgba(132,0,39,.25));
-      transition:transform .2s ease;
-    }
+    opacity:.18;
 
-    .heart-btn:hover{
-      transform:scale(1.06);
-    }
+    pointer-events:none;
 
-    .heart-btn:active{
-      transform:scale(.95);
-    }
+    z-index:1;
 
-    @keyframes beat{
-      0%{transform:scale(1);}
-      18%{transform:scale(1.14);}
-      36%{transform:scale(1);}
-      54%{transform:scale(1.11);}
-      72%{transform:scale(1);}
-      100%{transform:scale(1);}
-    }
+    animation:
+        floatUp linear forwards;
 
-    .heart-btn.explode{
-      animation:explodeHeart .7s forwards;
-    }
+}
 
-    @keyframes explodeHeart{
-      0%{
-        transform:scale(1);
-        opacity:1;
-      }
-      35%{
-        transform:scale(1.55);
-        opacity:1;
-      }
-      70%{
-        transform:scale(.4) rotate(25deg);
-        opacity:1;
-      }
-      100%{
-        transform:scale(4);
-        opacity:0;
-      }
-    }
+@keyframes floatUp{
 
-    .click-text{
-      color:white;
-      font-weight:bold;
-      font-size:1rem;
-      opacity:.92;
-      animation:blink 1.5s infinite;
-    }
+    from{
 
-    @keyframes blink{
-      50%{opacity:.45;}
-    }
-
-    .flash{
-      position:fixed;
-      inset:0;
-      background:white;
-      opacity:0;
-      pointer-events:none;
-      z-index:999;
-    }
-
-    .flash.active{
-      animation:flashBang .45s forwards;
-    }
-
-    @keyframes flashBang{
-      0%{opacity:0;}
-      35%{opacity:.9;}
-      100%{opacity:0;}
-    }
-
-    .particle{
-      position:fixed;
-      left:50%;
-      top:50%;
-      transform:translate(-50%,-50%);
-      z-index:30;
-      pointer-events:none;
-      font-weight:bold;
-      animation:particleFly var(--duration) cubic-bezier(.14,.7,.3,1) forwards;
-    }
-
-    @keyframes particleFly{
-      0%{
-        transform:translate(-50%,-50%) scale(.3) rotate(0deg);
-        opacity:1;
-      }
-      100%{
         transform:
-          translate(calc(-50% + var(--x)), calc(-50% + var(--y)))
-          scale(var(--scale))
-          rotate(var(--rotate));
+            translateY(0)
+            rotate(0deg);
+
+        opacity:.20;
+
+    }
+
+    to{
+
+        transform:
+            translateY(-120vh)
+            rotate(360deg);
+
         opacity:0;
-      }
+
     }
 
-    .cat{
-      position:fixed;
-      left:50%;
-      top:50%;
-      transform:translate(-50%,-50%);
-      z-index:25;
-      pointer-events:none;
-      object-fit:cover;
-      border-radius:14px;
-      box-shadow:0 10px 25px rgba(0,0,0,.28);
-      animation:catFly var(--duration) cubic-bezier(.12,.75,.25,1) forwards;
-    }
+}
 
-    @keyframes catFly{
-      0%{
-        transform:translate(-50%,-50%) scale(.15) rotate(0deg);
-        opacity:0;
-      }
-      10%{
-        opacity:1;
-      }
-      100%{
-        left:var(--left);
-        top:var(--top);
-        transform:translate(-50%,-50%) scale(var(--scale)) rotate(var(--rotate));
-        opacity:1;
-      }
-    }
 
-    .final-message{
-      display:none;
-      position:relative;
-      z-index:40;
-      animation:appear .9s ease forwards;
-    }
+/* -------------------------
+   CONTENEDOR
+------------------------- */
 
-    .final-message.show{
-      display:block;
-    }
+.container{
 
-    @keyframes appear{
-      from{
-        opacity:0;
-        transform:scale(.45);
-      }
-      to{
-        opacity:1;
+    position:relative;
+
+    z-index:10;
+
+    text-align:center;
+
+    width:min(92vw,900px);
+
+    padding:25px;
+
+}
+
+
+/* -------------------------
+   INTRO
+------------------------- */
+
+.intro{
+    display:block;
+}
+
+.intro.hide{
+    display:none;
+}
+
+.intro-title{
+
+    color:white;
+
+    font-size:
+        clamp(
+            1.4rem,
+            4vw,
+            2.2rem
+        );
+
+    font-weight:bold;
+
+    margin-bottom:10px;
+
+    text-shadow:
+        0 4px 15px
+        rgba(0,0,0,.18);
+
+}
+
+.intro-subtitle{
+
+    color:#fff8fa;
+
+    font-size:
+        clamp(
+            1rem,
+            3vw,
+            1.3rem
+        );
+
+    margin-bottom:25px;
+
+}
+
+
+/* -------------------------
+   CORAZÓN
+------------------------- */
+
+.heart-area{
+
+    width:280px;
+
+    height:280px;
+
+    margin:auto;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+.heart-button{
+
+    border:none;
+
+    background:none;
+
+    font-size:155px;
+
+    cursor:pointer;
+
+    line-height:1;
+
+    animation:
+        heartbeat 1s infinite;
+
+    filter:
+        drop-shadow(
+            0 15px 25px
+            rgba(120,0,35,.3)
+        );
+
+}
+
+.heart-button:hover{
+
+    filter:
+        drop-shadow(
+            0 20px 30px
+            rgba(120,0,35,.4)
+        );
+
+}
+
+@keyframes heartbeat{
+
+    0%{
         transform:scale(1);
-      }
     }
 
-    .big-cat{
-      font-size:95px;
-      display:block;
-      margin-bottom:10px;
-      animation:wiggle .8s infinite alternate;
+    18%{
+        transform:scale(1.15);
     }
 
-    @keyframes wiggle{
-      from{transform:rotate(-8deg) scale(1);}
-      to{transform:rotate(8deg) scale(1.08);}
+    35%{
+        transform:scale(1);
     }
 
-    .love-text{
-      font-size:clamp(2.4rem, 8vw, 5.4rem);
-      font-weight:900;
-      color:white;
-      line-height:1;
-      margin:0;
-      text-shadow:
-        0 4px 0 #db3a6d,
-        0 10px 30px rgba(114,0,36,.25);
+    52%{
+        transform:scale(1.12);
     }
 
-    .love-text span{
-      display:block;
-      margin-top:14px;
-      color:#fff5f8;
-      font-size:clamp(1.9rem, 6vw, 4.1rem);
+    70%{
+        transform:scale(1);
     }
 
-    .signature{
-      display:inline-block;
-      margin-top:26px;
-      background:rgba(255,255,255,.22);
-      color:white;
-      border:2px solid rgba(255,255,255,.35);
-      border-radius:999px;
-      padding:14px 24px;
-      font-weight:bold;
-      font-size:clamp(1rem, 3.4vw, 1.55rem);
-      backdrop-filter:blur(10px);
-      box-shadow:0 10px 25px rgba(0,0,0,.12);
+    100%{
+        transform:scale(1);
     }
 
-    .again-btn{
-      margin-top:24px;
-      border:none;
-      background:white;
-      color:#ef4c7e;
-      padding:12px 22px;
-      border-radius:999px;
-      font-weight:bold;
-      cursor:pointer;
-      font-size:1rem;
-      transition:transform .2s ease;
+}
+
+.heart-button.explode{
+
+    animation:
+        explodeHeart .7s forwards;
+
+}
+
+@keyframes explodeHeart{
+
+    0%{
+
+        transform:scale(1);
+
+        opacity:1;
+
     }
 
-    .again-btn:hover{
-      transform:scale(1.06);
+    35%{
+
+        transform:scale(1.7);
+
+        opacity:1;
+
     }
 
-    .mini-note{
-      margin-top:14px;
-      color:#fff7fa;
-      opacity:.92;
-      font-size:.95rem;
+    65%{
+
+        transform:
+            scale(.4)
+            rotate(25deg);
+
+        opacity:1;
+
     }
 
-    @media(max-width:600px){
-      .heart-btn{
-        font-size:130px;
-      }
+    100%{
 
-      .heart-wrap{
+        transform:scale(5);
+
+        opacity:0;
+
+    }
+
+}
+
+.click-text{
+
+    color:white;
+
+    font-weight:bold;
+
+    animation:
+        blink 1.3s infinite;
+
+}
+
+@keyframes blink{
+
+    50%{
+        opacity:.4;
+    }
+
+}
+
+
+/* -------------------------
+   FLASH
+------------------------- */
+
+.flash{
+
+    position:fixed;
+
+    inset:0;
+
+    background:white;
+
+    opacity:0;
+
+    pointer-events:none;
+
+    z-index:9999;
+
+}
+
+.flash.active{
+
+    animation:
+        flashAnimation .45s;
+
+}
+
+@keyframes flashAnimation{
+
+    0%{
+        opacity:0;
+    }
+
+    35%{
+        opacity:.95;
+    }
+
+    100%{
+        opacity:0;
+    }
+
+}
+
+
+/* -------------------------
+   PARTÍCULAS
+------------------------- */
+
+.particle{
+
+    position:fixed;
+
+    left:50%;
+
+    top:50%;
+
+    z-index:50;
+
+    pointer-events:none;
+
+    font-weight:bold;
+
+    transform:
+        translate(
+            -50%,
+            -50%
+        );
+
+    animation:
+        particleExplosion
+        var(--duration)
+        cubic-bezier(.15,.7,.3,1)
+        forwards;
+
+}
+
+@keyframes particleExplosion{
+
+    0%{
+
+        transform:
+            translate(
+                -50%,
+                -50%
+            )
+            scale(.2)
+            rotate(0deg);
+
+        opacity:1;
+
+    }
+
+    75%{
+        opacity:1;
+    }
+
+    100%{
+
+        transform:
+
+            translate(
+                calc(
+                    -50%
+                    +
+                    var(--x)
+                ),
+
+                calc(
+                    -50%
+                    +
+                    var(--y)
+                )
+            )
+
+            scale(
+                var(--scale)
+            )
+
+            rotate(
+                var(--rotate)
+            );
+
+        opacity:0;
+
+    }
+
+}
+
+
+/* -------------------------
+   GATOS REALES
+------------------------- */
+
+.cat{
+
+    position:fixed;
+
+    left:50%;
+
+    top:50%;
+
+    z-index:35;
+
+    pointer-events:none;
+
+    object-fit:cover;
+
+    border-radius:13px;
+
+    box-shadow:
+        0 10px 30px
+        rgba(0,0,0,.28);
+
+    animation:
+
+        catExplosion
+        var(--duration)
+        cubic-bezier(.13,.75,.25,1)
+        forwards;
+
+}
+
+@keyframes catExplosion{
+
+    0%{
+
+        left:50%;
+
+        top:50%;
+
+        transform:
+            translate(
+                -50%,
+                -50%
+            )
+            scale(.1)
+            rotate(0deg);
+
+        opacity:0;
+
+    }
+
+    10%{
+        opacity:1;
+    }
+
+    100%{
+
+        left:var(--left);
+
+        top:var(--top);
+
+        transform:
+
+            translate(
+                -50%,
+                -50%
+            )
+
+            scale(
+                var(--scale)
+            )
+
+            rotate(
+                var(--rotate)
+            );
+
+        opacity:1;
+
+    }
+
+}
+
+
+/* -------------------------
+   MENSAJE FINAL
+------------------------- */
+
+.final-message{
+
+    display:none;
+
+    position:relative;
+
+    z-index:100;
+
+}
+
+.final-message.show{
+
+    display:block;
+
+    animation:
+        messageAppear
+        .8s ease forwards;
+
+}
+
+@keyframes messageAppear{
+
+    from{
+
+        opacity:0;
+
+        transform:
+            scale(.4);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+            scale(1);
+
+    }
+
+}
+
+.main-cat{
+
+    font-size:90px;
+
+    display:block;
+
+    margin-bottom:10px;
+
+    animation:
+        catDance
+        .7s infinite alternate;
+
+}
+
+@keyframes catDance{
+
+    from{
+
+        transform:
+            rotate(-8deg)
+            scale(1);
+
+    }
+
+    to{
+
+        transform:
+            rotate(8deg)
+            scale(1.1);
+
+    }
+
+}
+
+.love-text{
+
+    margin:0;
+
+    color:white;
+
+    font-weight:900;
+
+    font-size:
+        clamp(
+            2.5rem,
+            8vw,
+            5.5rem
+        );
+
+    line-height:1;
+
+    text-shadow:
+
+        0 4px 0
+        #da3769,
+
+        0 10px 30px
+        rgba(110,0,35,.3);
+
+}
+
+.love-text span{
+
+    display:block;
+
+    margin-top:14px;
+
+    color:#fff5f8;
+
+    font-size:
+        clamp(
+            2rem,
+            6vw,
+            4.2rem
+        );
+
+}
+
+
+/* FIRMA */
+
+.signature{
+
+    display:inline-block;
+
+    margin-top:28px;
+
+    padding:
+        14px 25px;
+
+    border-radius:
+        999px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            .22
+        );
+
+    border:
+        2px solid
+        rgba(
+            255,
+            255,
+            255,
+            .35
+        );
+
+    color:white;
+
+    font-size:
+        clamp(
+            1rem,
+            3.5vw,
+            1.5rem
+        );
+
+    font-weight:bold;
+
+    backdrop-filter:
+        blur(10px);
+
+}
+
+
+/* BOTÓN NUEVA EXPLOSIÓN */
+
+.again-button{
+
+    margin-top:25px;
+
+    border:none;
+
+    background:white;
+
+    color:#ee4b7e;
+
+    border-radius:
+        999px;
+
+    padding:
+        13px 23px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    font-size:1rem;
+
+    transition:.2s;
+
+}
+
+.again-button:hover{
+
+    transform:
+        scale(1.07);
+
+}
+
+
+/* -------------------------
+   CELULAR
+------------------------- */
+
+@media(
+    max-width:600px
+){
+
+    .heart-area{
+
         width:230px;
-        height:230px;
-      }
 
-      .big-cat{
-        font-size:80px;
-      }
+        height:230px;
+
     }
-  </style>
+
+    .heart-button{
+
+        font-size:
+            125px;
+
+    }
+
+    .main-cat{
+
+        font-size:
+            75px;
+
+    }
+
+}
+
+</style>
+
 </head>
+
 <body>
 
-  <div id="flash" class="flash"></div>
 
-  <div class="container">
+<!-- FLASH -->
 
-    <div id="intro" class="intro">
-      <div class="title-small">Amorcini Bombini... tengo algo para ti 🥺</div>
-      <div class="title-small-2">toca el corazón ❤️</div>
+<div
+    id="flash"
+    class="flash">
+</div>
 
-      <div class="heart-wrap">
-        <button id="heartBtn" class="heart-btn" aria-label="Abrir sorpresa">
-          ❤️
+
+
+<!-- CONTENIDO -->
+
+<div class="container">
+
+
+    <!-- INTRO -->
+
+    <div
+        id="intro"
+        class="intro">
+
+        <div
+            class="intro-title">
+
+            Vale... tengo algo para ti 🥺
+
+        </div>
+
+        <div
+            class="intro-subtitle">
+
+            toca el corazón ❤️
+
+        </div>
+
+
+        <div class="heart-area">
+
+            <button
+                id="heartButton"
+                class="heart-button"
+                aria-label="Abrir sorpresa">
+
+                ❤️
+
+            </button>
+
+        </div>
+
+
+        <div class="click-text">
+
+            haz click aquí 👆
+
+        </div>
+
+    </div>
+
+
+
+    <!-- MENSAJE FINAL -->
+
+    <div
+        id="finalMessage"
+        class="final-message">
+
+
+        <span class="main-cat">
+
+            😽
+
+        </span>
+
+
+        <h1 class="love-text">
+
+            TE AMO
+
+            <span>
+
+                MI AMORCITO ❤️
+
+            </span>
+
+        </h1>
+
+
+        <div class="signature">
+
+            Para Vale 💗 de Brandito 🐱
+
+        </div>
+
+
+        <br>
+
+
+        <button
+            id="againButton"
+            class="again-button">
+
+            explotar otra vez 💥
+
         </button>
-      </div>
 
-      <div class="click-text">haz click aquí 👆</div>
+
     </div>
 
-    <div id="finalMessage" class="final-message">
-      <span class="big-cat">😽</span>
 
-      <h1 class="love-text">
-        TE AMO
-        <span>MI AMORCITO ❤️</span>
-      </h1>
+</div>
 
-      <div class="signature">
-        Para Vale 💗 de Brandito 🐱
-      </div>
 
-      <div class="mini-note">
-        prestame la puchaina 💥
-      </div>
 
-      <button id="againBtn" class="again-btn">
-        explotar otra vez 💥
-      </button>
-    </div>
+<script>
 
-  </div>
+/* ===========================
+   FOTOS DE LOS GATOS
+=========================== */
 
-  <script>
-    const heartBtn = document.getElementById("heartBtn");
-    const intro = document.getElementById("intro");
-    const finalMessage = document.getElementById("finalMessage");
-    const flash = document.getElementById("flash");
-    const againBtn = document.getElementById("againBtn");
+const catImages = [
 
-    // AQUÍ VAN LOS NOMBRES DE LAS FOTOS
-    const catImages = [
-      "gato1.jpg",
-      "gato2.jpg",
-      "gato3.jpg",
-      "gato4.jpg",
-      "gato5.jpg"
+    "gato1.jpg",
+
+    "gato2.jpg",
+
+    "gato3.jpg",
+
+    "gato4.jpg",
+
+    "gato5.jpg"
+
+];
+
+
+/* ===========================
+   ELEMENTOS
+=========================== */
+
+const heartButton =
+    document.getElementById(
+        "heartButton"
+    );
+
+const intro =
+    document.getElementById(
+        "intro"
+    );
+
+const finalMessage =
+    document.getElementById(
+        "finalMessage"
+    );
+
+const flash =
+    document.getElementById(
+        "flash"
+    );
+
+const againButton =
+    document.getElementById(
+        "againButton"
+    );
+
+
+/* ===========================
+   NÚMERO ALEATORIO
+=========================== */
+
+function randomBetween(
+    min,
+    max
+){
+
+    return (
+        Math.random()
+        *
+        (max-min)
+        +
+        min
+    );
+
+}
+
+
+/* ===========================
+   CORAZONES DE FONDO
+=========================== */
+
+function createBackgroundHeart(){
+
+    const symbols = [
+
+        "♡",
+        "♥",
+        "💕",
+        "💗",
+        "💖"
+
     ];
 
-    function createBackgroundHearts(){
-      const symbols = ["♡","♥","💕","💗","💖"];
 
-      setInterval(() => {
-        const heart = document.createElement("div");
-        heart.className = "floating-heart";
-        heart.textContent = symbols[Math.floor(Math.random() * symbols.length)];
-        heart.style.left = Math.random() * 100 + "vw";
-        heart.style.fontSize = (18 + Math.random() * 28) + "px";
-        heart.style.animationDuration = (5 + Math.random() * 5) + "s";
-        document.body.appendChild(heart);
+    const heart =
+        document.createElement(
+            "div"
+        );
 
-        setTimeout(() => {
-          heart.remove();
-        }, 10000);
-      }, 450);
+
+    heart.className =
+        "floating-heart";
+
+
+    heart.textContent =
+
+        symbols[
+            Math.floor(
+                Math.random()
+                *
+                symbols.length
+            )
+        ];
+
+
+    heart.style.left =
+
+        randomBetween(
+            0,
+            100
+        )
+        +
+        "vw";
+
+
+    heart.style.fontSize =
+
+        randomBetween(
+            18,
+            42
+        )
+        +
+        "px";
+
+
+    heart.style.animationDuration =
+
+        randomBetween(
+            5,
+            10
+        )
+        +
+        "s";
+
+
+    document.body.appendChild(
+        heart
+    );
+
+
+    setTimeout(
+        ()=>{
+
+            heart.remove();
+
+        },
+        11000
+    );
+
+}
+
+
+/* CREAR CORAZONES CONSTANTEMENTE */
+
+setInterval(
+    createBackgroundHeart,
+    450
+);
+
+
+/* ===========================
+   EXPLOSIÓN PRINCIPAL
+=========================== */
+
+function explodeLove(
+    firstExplosion = false
+){
+
+    /* FLASH */
+
+    flash.classList.add(
+        "active"
+    );
+
+
+    setTimeout(
+        ()=>{
+
+            flash.classList.remove(
+                "active"
+            );
+
+        },
+        450
+    );
+
+
+    /* PARTÍCULAS */
+
+    createParticles(
+        100
+    );
+
+
+    /* GATOS */
+
+    createCats(
+        35
+    );
+
+
+    /* PRIMER CLICK */
+
+    if(firstExplosion){
+
+        heartButton.disabled =
+            true;
+
+
+        heartButton.classList.add(
+            "explode"
+        );
+
+
+        setTimeout(
+            ()=>{
+
+                intro.classList.add(
+                    "hide"
+                );
+
+
+                finalMessage.classList.add(
+                    "show"
+                );
+
+            },
+            650
+        );
+
     }
 
-    createBackgroundHearts();
+}
 
-    function randomBetween(min, max){
-      return Math.random() * (max - min) + min;
+
+/* ===========================
+   PARTÍCULAS
+=========================== */
+
+function createParticles(
+    amount
+){
+
+    const particles = [
+
+        "❤️",
+
+        "💖",
+
+        "💕",
+
+        "💗",
+
+        "💘",
+
+        "💞",
+
+        "😻",
+
+        "😽",
+
+        "🐱",
+
+        "💥",
+
+        "MIAU",
+
+        "TE AMO"
+
+    ];
+
+
+    for(
+        let i=0;
+        i<amount;
+        i++
+    ){
+
+        const particle =
+            document.createElement(
+                "div"
+            );
+
+
+        particle.className =
+            "particle";
+
+
+        particle.textContent =
+
+            particles[
+                Math.floor(
+                    Math.random()
+                    *
+                    particles.length
+                )
+            ];
+
+
+        const angle =
+
+            Math.random()
+            *
+            Math.PI
+            *
+            2;
+
+
+        const distance =
+
+            randomBetween(
+                150,
+                700
+            );
+
+
+        const x =
+
+            Math.cos(
+                angle
+            )
+            *
+            distance;
+
+
+        const y =
+
+            Math.sin(
+                angle
+            )
+            *
+            distance;
+
+
+        particle.style.setProperty(
+
+            "--x",
+
+            x+"px"
+
+        );
+
+
+        particle.style.setProperty(
+
+            "--y",
+
+            y+"px"
+
+        );
+
+
+        particle.style.setProperty(
+
+            "--scale",
+
+            randomBetween(
+                .6,
+                1.8
+            )
+
+        );
+
+
+        particle.style.setProperty(
+
+            "--rotate",
+
+            randomBetween(
+                -400,
+                400
+            )
+            +
+            "deg"
+
+        );
+
+
+        particle.style.setProperty(
+
+            "--duration",
+
+            randomBetween(
+                .8,
+                1.8
+            )
+            +
+            "s"
+
+        );
+
+
+        particle.style.fontSize =
+
+            randomBetween(
+                20,
+                42
+            )
+            +
+            "px";
+
+
+        document.body.appendChild(
+            particle
+        );
+
+
+        setTimeout(
+            ()=>{
+
+                particle.remove();
+
+            },
+            2300
+        );
+
     }
 
-    function explodeEverything(firstTime = false){
-      flash.classList.add("active");
-      setTimeout(() => {
-        flash.classList.remove("active");
-      }, 450);
+}
 
-      createParticles(90);
-      createCats(28);
 
-      if(firstTime){
-        heartBtn.disabled = true;
-        heartBtn.classList.add("explode");
+/* ===========================
+   GATITOS REALES
+=========================== */
 
-        setTimeout(() => {
-          intro.classList.add("hide");
-          finalMessage.classList.add("show");
-        }, 650);
-      }
+function createCats(
+    amount
+){
+
+    for(
+        let i=0;
+        i<amount;
+        i++
+    ){
+
+        const cat =
+            document.createElement(
+                "img"
+            );
+
+
+        cat.className =
+            "cat";
+
+
+        /* FOTO ALEATORIA */
+
+        const randomCat =
+
+            catImages[
+                Math.floor(
+                    Math.random()
+                    *
+                    catImages.length
+                )
+            ];
+
+
+        /*
+        IMPORTANTE:
+        ./ significa que busca
+        las fotos en la misma
+        carpeta que index.html
+        */
+
+        cat.src =
+            "./"
+            +
+            randomCat;
+
+
+        /*
+        ALT VACÍO PARA QUE
+        NO APAREZCA EL TEXTO
+        "gatito meme"
+        */
+
+        cat.alt =
+            "";
+
+
+        /* TAMAÑO */
+
+        const size =
+
+            randomBetween(
+                75,
+                150
+            );
+
+
+        cat.style.width =
+            size+"px";
+
+
+        cat.style.height =
+            size+"px";
+
+
+        /* POSICIÓN FINAL */
+
+        cat.style.setProperty(
+
+            "--left",
+
+            randomBetween(
+                4,
+                96
+            )
+            +
+            "vw"
+
+        );
+
+
+        cat.style.setProperty(
+
+            "--top",
+
+            randomBetween(
+                6,
+                94
+            )
+            +
+            "vh"
+
+        );
+
+
+        /* ESCALA */
+
+        cat.style.setProperty(
+
+            "--scale",
+
+            randomBetween(
+                .75,
+                1.4
+            )
+
+        );
+
+
+        /* GIRO */
+
+        cat.style.setProperty(
+
+            "--rotate",
+
+            randomBetween(
+                -60,
+                60
+            )
+            +
+            "deg"
+
+        );
+
+
+        /* VELOCIDAD */
+
+        cat.style.setProperty(
+
+            "--duration",
+
+            randomBetween(
+                .5,
+                1.4
+            )
+            +
+            "s"
+
+        );
+
+
+        /*
+        SI UNA FOTO NO EXISTE,
+        SIMPLEMENTE SE ELIMINA.
+        */
+
+        cat.onerror =
+            function(){
+
+                console.log(
+
+                    "No se encontró la imagen:",
+
+                    randomCat
+
+                );
+
+
+                cat.remove();
+
+            };
+
+
+        document.body.appendChild(
+            cat
+        );
+
+
+        /*
+        DESPUÉS DE 5 SEGUNDOS
+        SE ELIMINA
+        */
+
+        setTimeout(
+            ()=>{
+
+                cat.remove();
+
+            },
+            5000
+        );
+
     }
 
-    function createParticles(amount){
-      const items = [
-        "❤️","💖","💕","💗","💘","💞","😻","😽","🐱","!!","TE AMO","💥"
-      ];
+}
 
-      for(let i = 0; i < amount; i++){
-        const particle = document.createElement("div");
-        particle.className = "particle";
-        particle.textContent = items[Math.floor(Math.random() * items.length)];
 
-        const angle = Math.random() * Math.PI * 2;
-        const distance = randomBetween(140, 650);
+/* ===========================
+   CLICK CORAZÓN
+=========================== */
 
-        const x = Math.cos(angle) * distance + "px";
-        const y = Math.sin(angle) * distance + "px";
+heartButton.addEventListener(
 
-        particle.style.setProperty("--x", x);
-        particle.style.setProperty("--y", y);
-        particle.style.setProperty("--scale", randomBetween(.7, 1.8));
-        particle.style.setProperty("--rotate", randomBetween(-360, 360) + "deg");
-        particle.style.setProperty("--duration", randomBetween(.9, 1.8) + "s");
-        particle.style.fontSize = randomBetween(20, 40) + "px";
+    "click",
 
-        document.body.appendChild(particle);
+    ()=>{
 
-        setTimeout(() => {
-          particle.remove();
-        }, 2200);
-      }
+        explodeLove(
+            true
+        );
+
     }
 
-    function createCats(amount){
-      for(let i = 0; i < amount; i++){
-        const cat = document.createElement("img");
-        cat.className = "cat";
-        cat.src = catImages[Math.floor(Math.random() * catImages.length)];
-        cat.alt = "gatito meme";
+);
 
-        cat.style.width = randomBetween(70, 140) + "px";
-        cat.style.height = randomBetween(70, 140) + "px";
-        cat.style.setProperty("--left", randomBetween(5, 95) + "vw");
-        cat.style.setProperty("--top", randomBetween(8, 92) + "vh");
-        cat.style.setProperty("--scale", randomBetween(.8, 1.45));
-        cat.style.setProperty("--rotate", randomBetween(-50, 50) + "deg");
-        cat.style.setProperty("--duration", randomBetween(.6, 1.5) + "s");
 
-        document.body.appendChild(cat);
+/* ===========================
+   EXPLOTAR OTRA VEZ
+=========================== */
 
-        setTimeout(() => {
-          cat.remove();
-        }, 5000);
-      }
+againButton.addEventListener(
+
+    "click",
+
+    ()=>{
+
+        explodeLove(
+            false
+        );
+
     }
 
-    heartBtn.addEventListener("click", () => {
-      explodeEverything(true);
-    });
+);
 
-    againBtn.addEventListener("click", () => {
-      explodeEverything(false);
-    });
-  </script>
+</script>
 
 </body>
+
 </html>
